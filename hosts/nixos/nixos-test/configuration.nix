@@ -2,11 +2,17 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       ./hardware-configuration.nix
+      ./../../common/nixos-common-packages.nix
+      ./../../common/nixos-common.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
+  boot.loader.systemd-boot.extraInstallCommands = ''
+    cp -r /boot/* /bootbak/
+  '';
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelModules = [ "drivetemp" ];
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
@@ -20,8 +26,6 @@
   
   # zram swap
   zramSwap.enable = true;
-
-  time.timeZone = "America/New_York";
 
   users.users.gbrown = {
     isNormalUser = true;
@@ -56,8 +60,6 @@
     nameservers = [ "192.168.10.1" ];
     search = [ "home.ikgb.me" ];
   };
-
-  i18n.defaultLocale = "en_US.UTF-8";
 
   environment.systemPackages = with pkgs; [
     diceware
@@ -106,23 +108,15 @@
   # };    
 
   virtualisation = {
-    docker = {
-      enable = true;
-      autoPrune = {
-        enable = true;
-        dates = "weekly";
-      };
-    };
     libvirtd = {
       enable = true;
       qemu = {
-        package = pkgs.qemu_full;
         vhostUserPackages = [ pkgs.virtiofsd ];
         runAsRoot = true;
         swtpm.enable = true;
         ovmf = {
           enable = true;
-          packages = [ pkgs.OVMFFull ];
+          packages = [ pkgs.OVMFFull.fd ];
         };
       };
     };
