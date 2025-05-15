@@ -69,6 +69,7 @@
     intel-gpu-tools
     lm_sensors
     mergerfs
+    mergerfs-tools
     nvme-cli
     nvtopPackages.intel
     powertop
@@ -127,6 +128,42 @@
   services.openssh.enable = true;
   #services.tailscale.enable = true;
 
+  services.snapraid = {
+    enable = true;
+    parityFiles = [
+      "/mnt/disks/parity1/snapraid.parity"
+    ];
+    contentFiles = [
+      "/var/snapraid.content"
+      "/mnt/snapct/disk1/snapraid.content"
+      "/mnt/snapct/disk2/snapraid.content"
+    ];
+    dataDisks = {
+      d1 = "/mnt/disks/disk1";
+      d2 = "/mnt/disks/disk2";
+      d3 = "/mnt/disks/disk3";
+    };
+    exclude = [
+      "*.unrecoverable"
+      "/tmp/"
+      "/lost+found/"
+      "downloads/"
+      "appdata/"
+      "*.!sync"
+      ".AppleDouble"
+      "._AppleDouble"
+      ".DS_Store"
+      "._.DS_Store"
+      ".Thumbs.db"
+      ".fseventsd"
+      ".Spotlight-V100"
+      ".TemporaryItems"
+      ".Trashes"
+      ".AppleDB"
+      ".nfo"
+      "/.snapshots/"
+    ];
+  };
 
   system.stateVersion = "24.11"; # Did you read the comment?
 
