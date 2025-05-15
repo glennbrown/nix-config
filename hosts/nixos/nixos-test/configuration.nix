@@ -6,6 +6,10 @@
       ./hardware-configuration.nix
       ./../../common/nixos-common-packages.nix
       ./../../common/nixos-common.nix
+      (builtins.fetchTarball {
+        url = "https://github.com/nix-community/nixos-vscode-server/tarball/master";
+        sha256 = "09j4kvsxw1d5dvnhbsgih0icbrxqv90nzf0b589rb5z6gnzwjnqf";
+      })
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -164,6 +168,8 @@
       "/.snapshots/"
     ];
   };
+
+  services.vscode-server.enable = true;
 
   system.stateVersion = "24.11"; # Did you read the comment?
 
