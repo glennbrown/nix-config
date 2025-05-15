@@ -45,6 +45,52 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/srv/appdata" =
+    { device = "rpool/appdata";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/parity1" =
+    { device = "/dev/disk/by-uuid/dde4f877-1f0c-4364-b428-095a7f912e78";
+      fsType = "xfs";
+    };
+
+  fileSystems."/mnt/disks/disk1" =
+    { device = "/dev/disk/by-uuid/42f0c26e-ddd0-4387-801a-a5c89caf4820";
+      fsType = "btrfs";
+      options = [ "subvol=data" ];
+    };
+
+  fileSystems."/mnt/disks/disk2" =
+    { device = "/dev/disk/by-uuid/49116a61-f321-4a59-a475-af96ddf2fe27";
+      fsType = "btrfs";
+      options = [ "subvol=data" ];
+    };
+
+  fileSystems."/mnt/disks/disk3" =
+    { device = "/dev/disk/by-uuid/89b57fd5-0f91-46b1-92ca-ab0e2749f461";
+      fsType = "btrfs";
+      options = [ "subvol=data" ];
+    };
+
+  fileSystems."/mnt/snapct/disk1" =
+    { device = "/dev/disk/by-uuid/42f0c26e-ddd0-4387-801a-a5c89caf4820";
+      fsType = "btrfs";
+      options = [ "subvol=content" ];
+    };
+
+  fileSystems."/mnt/snapct/disk2" =
+    { device = "/dev/disk/by-uuid/49116a61-f321-4a59-a475-af96ddf2fe27";
+      fsType = "btrfs";
+      options = [ "subvol=content" ];
+    };
+
+  fileSystems."/mnt/snapct/disk3" =
+    { device = "/dev/disk/by-uuid/89b57fd5-0f91-46b1-92ca-ab0e2749f461";
+      fsType = "btrfs";
+      options = [ "subvol=content" ];
+    };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -52,6 +98,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp6s18.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
