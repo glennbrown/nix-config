@@ -34,18 +34,18 @@
     enableZshIntegration = true;
     tmux.enableShellIntegration = true;
     colors = {
-      bg+:-1;
-      fg:gray;
-      fg+:white;
-      border:black;
-      spinner:0;
-      hl:yellow;
-      header:blue;
-      info:green;
-      pointer:red;
-      marker:blue;
-      prompt:gray;
-      hl+:red;
+      "bg+" = "-1";
+      "fg" = "gray";
+      "fg+" = "white";
+      "border" = "black";
+      "spinner" = "0";
+      "hl" = "yellow";
+      "header" = "blue";
+      "info" = "green";
+      "pointer" ="red";
+      "marker" = "blue";
+      "prompt" = "gray";
+      "hl+" = "red";
     };
     defaultOptions = [
       "--height 70%"
