@@ -33,7 +33,7 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.gbrown = { imports = [ ./../../../home/gbrown.nix ] };
+  home-manager.users.gbrown = { imports = [ ./../../../home/gbrown.nix ]; };
   users.users.gbrown = {
     isNormalUser = true;
     uid = 1000;
