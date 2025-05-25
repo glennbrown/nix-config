@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 
+let
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
+in
 {
   imports =
     [ 
@@ -10,6 +13,7 @@
         url = "https://github.com/nix-community/nixos-vscode-server/tarball/master";
         sha256 = "09j4kvsxw1d5dvnhbsgih0icbrxqv90nzf0b589rb5z6gnzwjnqf";
       })
+      (import "${home-manager}/nixos")
     ];
 
   boot.loader.systemd-boot.enable = true;
