@@ -31,13 +31,16 @@
   # zram swap
   zramSwap.enable = true;
 
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.users.gbrown = { imports = [ ./../../../home/gbrown.nix ] };
   users.users.gbrown = {
     isNormalUser = true;
     uid = 1000;
     extraGroups = [ "wheel" "docker" "render" "video" "libvirtd" ];
-    #packages = with pkgs; [
-    #  home-manager
-    #];
+    packages = with pkgs; [
+      home-manager
+    ];
   };
   users.defaultUserShell = pkgs.bash;
   programs.bash.interactiveShellInit = "echo \"\" \n figurine -f \"3d.flf\" nixos-test";
