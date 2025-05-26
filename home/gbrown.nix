@@ -91,6 +91,6 @@
       set visualbell
       set hlsearch
       set showmatch
-      ''
+      '';
   };
 }
