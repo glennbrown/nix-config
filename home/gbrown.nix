@@ -64,7 +64,7 @@
   };
 
   programs.vim = {
-    enable = true
+    enable = true;
     settings = {
       expandtab = true;
       tabstop = 2;
