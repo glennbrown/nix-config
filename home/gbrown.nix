@@ -65,8 +65,32 @@
 
   programs.vim = {
     enable = true
+    settings = {
+      expandtab = true;
+      tabstop = 2;
+      shiftwidth = 2;
+      number = true;
+    };
     extraConfig = ''
-      
-  }
-
+      syntax on
+      set cursorline
+      set nobackup
+      set autoread
+      set showcmd
+      set showmode
+      set showmatch
+      set autoindent smartindent
+      set smarttab
+      set scrolloff=5
+      filetype on
+      filetype indent on
+      filetype plugin on
+      set autoindent
+      set smartindent
+      set noerrorbells
+      set visualbell
+      set hlsearch
+      set showmatch
+      ''
+  };
 }
